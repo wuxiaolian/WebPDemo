@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-
+#import "UIImageView+WebCache.h"
+#import "UIImage+WebP.h"
 @interface ViewController ()
 
 @end
@@ -16,7 +17,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    [[SDImageCache sharedImageCache] cleanDisk];
+    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    
+    NSString *str1 = @"https://devthinking.com/images/animated.webp";
+    str1 = @"https://img.dmall.com/mIndex/201612/a3f819c6-f055-46f0-bd56-4586830bdc45_240x240H.webp";
+    [imageview sd_setImageWithURL:[NSURL URLWithString:str1]];
+    imageview.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:imageview];
+    
 }
 
 
